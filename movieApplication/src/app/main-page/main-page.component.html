@@ -1,0 +1,56 @@
+<div class="mainpage">
+  <div class="col-sm-12 row">
+    <div class="col-sm-5"></div>
+    <div class="col-sm-7 searchBox">
+      <input
+        type="text"
+        id="search"
+        placeholder="Enter Movie Name"
+        value=""
+        name="nameOfMovie"
+        [(ngModel)]="nameOfMovie"
+      />
+      <button type="btn btn-default" (click)="searchMovie(nameOfMovie)">
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="listContent col-sm-12 row">
+  <div class="col-sm-5">
+    <div
+      class="card"
+      *ngFor="let movieData of searchedMovie"
+      (click)="movieDetail(movieData)"
+    >
+      <span class="pull-left">
+        <img
+          [src]="movieData.backdrop_path"
+          alt="{{ movieData.title }}"
+          class="img-respon listImg"
+        />
+      </span>
+      <h4 class="list-group-item-heading">{{ movieData.title }}</h4>
+      <p class="list-group-item-text">Rated {{ movieData.vote_average }}/10</p>
+      <p class="list-group-item-text">
+        Released On : {{ movieData.release_date }}
+      </p>
+      <p class="list-group-item-text">{{ movieData.tagline }}</p>
+    </div>
+  </div>
+  <div class="col-sm-7">
+    <div class="movieDetails" *ngFor="let movieDetails of selectedMovie">
+      <img
+        [src]="movieDetails.backdrop_path"
+        alt="{{ movieDetails.title }}"
+        class="img-respon DetailImg"
+      />
+      <h2>{{ movieDetails.title }}</h2>
+      <h4>Rating : {{ movieDetails.vote_average }}</h4>
+      <h4>Rating Count : {{ movieDetails.vote_count }}</h4>
+      <h4>Release Data : {{ movieDetails.release_date }}</h4>
+      <p>Overview : {{ movieDetails.overview }}</p>
+    </div>
+  </div>
+</div>
